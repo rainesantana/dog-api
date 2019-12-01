@@ -1,0 +1,287 @@
+/*Mixins e variáveis*/
+
+@mixin flexbox($fb-display, $fb-direction, $fb-wrap, $fb-justify, $fb-align-items, $fb-align-content) {
+    //align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+    -webkit-align-content: $fb-align-content;
+    -moz-align-content: $fb-align-content;
+    -ms-align-content: $fb-align-content;
+    -o-align-content: $fb-align-content;
+    align-content: $fb-align-content;
+    //align-items: flex-start | flex-end | center | baseline | stretch;
+    -webkit-align-items: $fb-align-items;
+    -moz-align-items: $fb-align-items;
+    -ms-align-items: $fb-align-items;
+    -o-align-items: $fb-align-items;
+    align-items: $fb-align-items;
+    //display: flex or inline-flex */
+    display: -webkit-$fb-display;
+    display: -moz-$fb-display;
+    display: -ms-$fb-display;
+    display: -webkit-$fb-display;
+    display: $fb-display;
+    //flex-direction: row | row-reverse | column | column-reverse;
+    -webkit-flex-direction: $fb-direction;
+    -moz-flex-direction: $fb-direction;
+    -ms-flex-direction: $fb-direction;
+    -o-flex-direction: $fb-direction;
+    flex-direction: $fb-direction;
+    //flex-wrap: nowrap | wrap | wrap-reverse;
+    -webkit-flex-wrap: $fb-wrap;
+    -moz-flex-wrap: $fb-wrap;
+    -ms-flex-wrap: $fb-wrap;
+    -o-flex-wrap: $fb-wrap;
+    flex-wrap: $fb-wrap;
+    //justify-content: flex-start | flex-end | center | space-between | space-around;
+    -webkit-justify-content: $fb-justify;
+    -moz-justify-content: $fb-justify;
+    -ms-justify-content: $fb-justify;
+    -o-justify-content: $fb-justify;
+    justify-content: $fb-justify;
+}
+
+@mixin radius($radius: 5px) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin box-sizing($box-model) {
+    -webkit-box-sizing: $box-model; // Safari <= 5
+    -moz-box-sizing: $box-model; // Firefox <= 19
+    box-sizing: $box-model;
+}
+
+@function pxtorem($pixels) {
+    @if ($pixels==0) {
+        @return 0;
+    }
+    @if (unit($pixels)=='px') {
+        @return $pixels / 16px * 1rem;
+    }
+    @else {
+        @error "passed value must be in pixels or equal to zero";
+    }
+}
+
+$color-primary: #000;
+$color-secondary: #9b1e1e;
+$color-light: #fff;
+$font-title: 'Alatsi',
+sans-serif;
+$font-geral: 'Roboto',
+sans-serif;
+
+/*Mobile*/
+
+body {
+    position: relative;
+    .container {
+        width: 100%;
+        max-width: 1260px;
+        margin: 0 auto;
+        padding: 0 10px;
+        @include box-sizing(border-box);
+    }
+    #info-adoption {
+        h1 {
+            font-family: $font-title;
+            color: $color-secondary;
+            font-size: pxtorem(20px);
+            text-align: center;
+            text-transform: uppercase;
+            padding: 40px;
+        }
+        p {
+            width: 70%;
+            margin: 0 auto;
+            font-family: $font-geral;
+            font-size: pxtorem(12px);
+            text-align: center;
+            line-height: 16px;
+        }
+    }
+    #form {
+        #form-adoption {
+            background: #f1f1f1;
+            width: 80%;
+            margin: 0 auto;
+            padding: 0 20px;
+            legend {
+                @include flexbox(flex, row, nowrap, center, center, center);
+                font-size: pxtorem(14px);
+                font-family: $font-title;
+                text-transform: uppercase;
+                padding: 20px 0;
+                .number-form {
+                    background: $color-secondary;
+                    @include radius(25px);
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 10px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: $color-light;
+                    font-family: $font-title;
+                    font-size: pxtorem(16px);
+                }
+            }
+            .form_group {
+                @include flexbox(flex, column, wrap, flex-start, center, center);
+                label {
+                    font-family: $font-geral;
+                    font-size: pxtorem(12px);
+                    padding: 10px 0;
+                }
+                input {
+                    &::placeholder {
+                        color: #6d6c6c;
+                        font-family: $font-geral;
+                        font-size: pxtorem(12px);
+                    }
+                }
+                input,
+                select {
+                    width: 100%;
+                    border: 0;
+                    @include radius(4px);
+                    font-size: pxtorem(12px);
+                    color: #6d6c6c;
+                    font-family: $font-geral;
+                    margin: 0;
+                    outline: 0;
+                    padding: 10px;
+                    box-sizing: border-box;
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                    background-color: #e0dede;
+                    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+                    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+                }
+                .btn {
+                    width: 100%;
+                    position: relative;
+                    display: block;
+                    padding: 19px 39px 18px 39px;
+                    color: #FFF;
+                    margin: 0 auto;
+                    background: $color-secondary;
+                    font-size: pxtorem(14px);
+                    font-family: $font-title;
+                    text-transform: uppercase;
+                    text-align: center;
+                    font-style: normal;
+                    border: 1px solid #801313;
+                    border-width: 1px 1px 3px;
+                    margin: 20px 0;
+                }
+            }
+        }
+    }
+    #message-adoption {
+        display: none;
+        padding: 40px 0;
+        &.active {
+            display: block;
+        }
+        .container {
+            >p {
+                font-family: $font-title;
+                font-size: pxtorem(16px);
+                color: $color-secondary;
+                text-transform: uppercase;
+                text-align: center;
+                max-width: 60%;
+                margin: 0 auto;
+            }
+            .info-adoption {
+                position: relative;
+                padding: 40px 0;
+                max-width: 500px;
+                margin: 0 auto;
+                width: 100%;
+                #info-insert {
+                    position: absolute;
+                    bottom: 30px;
+                    background: url(../img/heart.png);
+                    width: 200px;
+                    height: 200px;
+                    background-size: cover;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    span {
+                        width: 60%;
+                        font-size: pxtorem(12px);
+                        text-align: center;
+                    }
+                    &.black {
+                        span {
+                            color: #000;
+                        }
+                    }
+                    &.red {
+                        span {
+                            color: #801313;
+                        }
+                    }
+                    &.pink {
+                        span {
+                            color: #e226b1;
+                        }
+                    }
+                    &.blue {
+                        span {
+                            color: #1983a2;
+                        }
+                    }
+                    &.yellow {
+                        span {
+                            color: #e2ab11;
+                        }
+                    }
+                    &.bebas-neue {
+                        font-family: 'Bebas Neue', cursive;
+                    }
+                    &.pacifico {
+                        font-family: 'Pacifico', cursive;
+                    }
+                    &.bree-serif {
+                        font-family: 'Bree Serif', serif;
+                    }
+                    &.fredoka-one {
+                        font-family: 'Fredoka One', cursive;
+                    }
+                    &.josefin-slab {
+                        font-family: 'Josefin Sans', sans-serif;
+                    }
+                }
+                #image-dog {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+
+/*Desktop*/
+
+@media(min-width: 800px) {
+    body {
+        #form {
+            #form-adoption {
+                width: 30%;
+            }
+        }
+        #message-adoption {
+            .container {
+                >p {
+                    width: 30%;
+                }
+            }
+        }
+    }
+}

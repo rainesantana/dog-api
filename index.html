@@ -5,11 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Alatsi|Bebas+Neue|Bree+Serif|Fredoka+One|Josefin+Sans|Pacifico|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <title>Adote um Doguinho</title>
 </head>
 
-<body>
+<body class="adote">
     <header>
         <div class="container">
             <div class="logo">
@@ -26,6 +29,160 @@
             </nav>
         </div>
     </header>
+    <div class="header-image">
+        <div class="container">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et enim in felis condimentum venenatis id commodo augue.</p>
+        </div>
+    </div>
+    <section id="info-adoption">
+        <div class="container">
+            <h1>Preencha o formulário abaixo e buscaremos o doguinho perfeito para você!</h1>
+            <p>Temos centenas de cachorros cadastrados em nosso banco de dados. Para participar do nosso processo de adoção basta inserir seus dados pessoais, a raça do seu novo amiguinho, nome e algumas informações adicionais. Ao fim de nossa busca retornaremos
+                uma foto do seu novo animal de estimação e entraremos em contato para agendar o dia em que você poderá vir buscá-lo.</p>
+        </div>
+    </section>
+    <section id="form">
+        <div class="container">
+            <form id="form-adoption">
+                <legend>
+                    <span class="number-form">1</span> Informações pessoais
+                </legend>
+                <div class="form_group">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" placeholder="Ex: Bianca da Silva" required>
+                </div>
+                <div class="form_group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" placeholder="Ex: bianca@email.com" required>
+                </div>
+                <legend>
+                    <span class="number-form">2</span> Informações do doguinho
+                </legend>
+                <div class="form_group">
+                    <label for="dog">Raça do doguinho:</label>
+                    <select id="dog-breed" name="dogBreed">
+                            <option selected disabled hidden>Selecione a raça</option>
+                        </select>
+                </div>
+                <div class="form_group">
+                    <label for="nameDog">Nome do doguinho:</label>
+                    <input type="text" id="nameDog" name="nameDog" placeholder="Ex: Bianca da Silva" required>
+                </div>
+                <legend>
+                    <span class="number-form">3</span> Informações adicionais
+                </legend>
+                <div class="form_group">
+                    <label for="font">Selecione uma tipografia:</label>
+                    <select name="font" id="font" required>
+                        <option value="" selected disabled hidden>Selecione uma font</option>
+                        <option value="bebas-neue">Bebas Neue</option>
+                        <option value="pacifico">Pacifico</option>
+                        <option value="bree-serif">Bree Serif</option>
+                        <option value="fredoka-one">Fradoka One</option>
+                        <option value="josefin-slab">Josefin Slab</option>
+                    </select>
+                </div>
+                <div class="form_group">
+                    <label for="color">Selecione uma cor:</label>
+                    <select name="color" id="color" required>
+                        <option value="" selected disabled hidden>Selecione uma cor</option>
+                        <option value="black">Preto</option>
+                        <option value="red">Vermelho</option>
+                        <option value="pink">Rosa</option>
+                        <option value="red">Azul</option>
+                        <option value="yellow">Amarelo</option>
+                    </select>
+                </div>
+                <div class="form_group">
+                    <button class="btn" id="btn_adoption" onclick="registrarDados();">Adotar</button>
+
+                </div>
+            </form>
+        </div>
+    </section>
+    <section id="message-adoption">
+        <div class="container">
+            <p>Eba! Agora sabemos qual doguinho você escolheu. Aguarde o nosso contato por e-mail para mais informações :)</p>
+            <div class="info-adoption">
+                <div id="info-insert"></div>
+                <img id="image-dog" />
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <section class="links-footer">
+                <div class="row">
+                    <div class="links-list social-links">
+                        <a href="#" title="Adote um doguinho">Adote um Doguinho</a>
+                        <ul>
+                            <li>
+                                <a href="#" title="Curta nossa página no Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" title="Siga nosso perfil no Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" title="Siga nosso perfil no Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="links-list">
+                        <h2>Menu</h2>
+                        <ul>
+                            <li>
+                                <a href="#" title="Home">Home</a>
+                            </li>
+                            <li>
+                                <a href="#" title="Contato">Contato</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="links-list">
+                        <h2>Central de atendimento</h2>
+                        <ul>
+                            <li>
+                                <a href="#" title="FAQ">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="#" title="Cachorros adotados">Cachorros adotados</a>
+                            </li>
+                            <li>
+                                <a href="#" title="Parceiros">Parceiros</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="links-list links-doubts">
+                        <h2>Dúvidas?</h2>
+                        <ul>
+                            <li>
+                                <address><i class="fas fa-map-marker-alt"></i> Rua Manuel de Barros Melo, 207 - <br> Vila Prudente, São Paulo - SP</address>
+                            </li>
+                            <li>
+                                <a href="https://api.whatsapp.com/send?phone=5599999999999&text=Oi%2C%20gostaria%20de%20adotar%20um%20cachorro" title="Entre em contato por WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i> (11) 99999-9999</a>
+                            </li>
+                            <li>
+                                <a href="mailto:contato@adoteumdoguinho.com.br" title="Entre em contato por e-mail"><i class="far fa-envelope"></i> contato@adoteumdoguinho.com.br</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="copy">
+                <div class="row">
+                    <p>© Copyright 2019 - Todos os direitos reservados</p>
+                </div>
+            </section>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
