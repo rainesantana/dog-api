@@ -1,0 +1,247 @@
+/*Mixins e variáveis*/
+
+@mixin flexbox($fb-display, $fb-direction, $fb-wrap, $fb-justify, $fb-align-items, $fb-align-content) {
+    //align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+    -webkit-align-content: $fb-align-content;
+    -moz-align-content: $fb-align-content;
+    -ms-align-content: $fb-align-content;
+    -o-align-content: $fb-align-content;
+    align-content: $fb-align-content;
+    //align-items: flex-start | flex-end | center | baseline | stretch;
+    -webkit-align-items: $fb-align-items;
+    -moz-align-items: $fb-align-items;
+    -ms-align-items: $fb-align-items;
+    -o-align-items: $fb-align-items;
+    align-items: $fb-align-items;
+    //display: flex or inline-flex */
+    display: -webkit-$fb-display;
+    display: -moz-$fb-display;
+    display: -ms-$fb-display;
+    display: -webkit-$fb-display;
+    display: $fb-display;
+    //flex-direction: row | row-reverse | column | column-reverse;
+    -webkit-flex-direction: $fb-direction;
+    -moz-flex-direction: $fb-direction;
+    -ms-flex-direction: $fb-direction;
+    -o-flex-direction: $fb-direction;
+    flex-direction: $fb-direction;
+    //flex-wrap: nowrap | wrap | wrap-reverse;
+    -webkit-flex-wrap: $fb-wrap;
+    -moz-flex-wrap: $fb-wrap;
+    -ms-flex-wrap: $fb-wrap;
+    -o-flex-wrap: $fb-wrap;
+    flex-wrap: $fb-wrap;
+    //justify-content: flex-start | flex-end | center | space-between | space-around;
+    -webkit-justify-content: $fb-justify;
+    -moz-justify-content: $fb-justify;
+    -ms-justify-content: $fb-justify;
+    -o-justify-content: $fb-justify;
+    justify-content: $fb-justify;
+}
+
+@mixin radius($radius: 5px) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@function pxtorem($pixels) {
+    @if ($pixels==0) {
+        @return 0;
+    }
+    @if (unit($pixels)=='px') {
+        @return $pixels / 16px * 1rem;
+    }
+    @else {
+        @error "passed value must be in pixels or equal to zero";
+    }
+}
+
+$color-primary: #000;
+$color-secondary: #9b1e1e;
+$color-light: #fff;
+$font-title: 'Alatsi',
+sans-serif;
+$font-geral: 'Roboto',
+sans-serif;
+$font-icons: "Font Awesome 5 Brands";
+
+/*Mobile*/
+
+footer {
+    .container {
+        max-width: 100%;
+        padding: 0;
+        .row {
+            width: 100%;
+            max-width: 1260px;
+            margin: 0 auto;
+        }
+    }
+    .links-footer {
+        padding: 40px 0;
+        .row {
+            @include flexbox(flex, column, nowrap, space-between, flex-start, center);
+            .links-list {
+                width: 100%;
+                a {
+                    text-decoration: none;
+                    color: $color-primary;
+                    font-family: $font-geral;
+                    font-size: pxtorem(12px);
+                    text-transform: uppercase;
+                    line-height: 12px;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+                h2 {
+                    text-transform: uppercase;
+                    font-family: $font-title;
+                    color: $color-secondary;
+                    margin-bottom: 20px;
+                }
+                li {
+                    padding: 5px 0;
+                }
+                &.social-links {
+                    a {
+                        font-family: $font-title;
+                        text-transform: uppercase;
+                        transition: all 0.3s linear;
+                        &:hover {
+                            text-decoration: none;
+                            color: $color-primary;
+                        }
+                    }
+                    >a {
+                        font-size: pxtorem(16px);
+                        color: $color-secondary;
+                        text-align: center;
+                        display: block;
+                    }
+                    ul {
+                        @include flexbox(flex, row, nowrap, center, center, center);
+                        padding: 20px 0;
+                        li {
+                            margin-right: 10px;
+                            padding: 0;
+                            a {
+                                background: $color-secondary;
+                                @include radius(25px);
+                                width: 30px;
+                                height: 30px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                color: $color-light;
+                                i {
+                                    font-size: pxtorem(16px);
+                                }
+                            }
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                        }
+                    }
+                }
+                &.links-doubts {
+                    address {
+                        font-family: $font-geral;
+                        font-size: pxtorem(12px);
+                        text-transform: uppercase;
+                    }
+                    ul {
+                        li {
+                            a,
+                            address {
+                                display: flex;
+                                flex-direction: row;
+                                align-items: flex-start;
+                                i {
+                                    font-size: pxtorem(14px);
+                                    padding-right: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .copy {
+        padding-bottom: 40px;
+        .row {
+            text-align: center;
+            p {
+                font-family: $font-geral;
+                font-size: pxtorem(10px);
+                text-transform: uppercase;
+            }
+        }
+    }
+    @media(max-width: 800px) {
+        .links-footer {
+            .links-list {
+                h2 {
+                    text-align: center;
+                    margin-top: 20px;
+                }
+                ul {
+                    li {
+                        a {
+                            text-align: center;
+                            display: block;
+                        }
+                    }
+                }
+                &.links-doubts {
+                    ul {
+                        li {
+                            a,
+                            address {
+                                justify-content: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/*Desktop*/
+
+@media(min-width: 800px) {
+    footer {
+        .onlyMobile {
+            display: none;
+        }
+        .links-footer {
+            .row {
+                -webkit-flex-direction: row;
+                -moz-flex-direction: row;
+                -ms-flex-direction: row;
+                -o-flex-direction: row;
+                flex-direction: row;
+                .links-list {
+                    &.social-links {
+                        >a {
+                            text-align: left;
+                        }
+                        ul {
+                            -webkit-justify-content: flex-start;
+                            -moz-justify-content: flex-start;
+                            -ms-justify-content: flex-start;
+                            -o-justify-content: flex-start;
+                            justify-content: flex-start;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
